@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+<Import Project="$([MSBuild]::GetPathOfFileAbove('AzSdk.reference.props'))" />
+  <PropertyGroup>
+    <PackageId>Microsoft.Azure.Template</PackageId>
+    <Description>This is a template project to demonstrate how to create a package as well as use for testing our build and release pipelines</Description>
+    <AssemblyTitle>Microsoft Azure SDK Template</AssemblyTitle>
+    <Version>1.0.0</Version>
+    <AssemblyName>Microsoft.Azure.Template</AssemblyName>
+    <PackageTags>Microsoft Azure Template</PackageTags>
+    <PackageReleaseNotes>
+      <![CDATA[
+        Azure SDK test package
+      ]]>
+    </PackageReleaseNotes>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net452;netstandard1.4</TargetFrameworks>
+  </PropertyGroup>
+</Project>
