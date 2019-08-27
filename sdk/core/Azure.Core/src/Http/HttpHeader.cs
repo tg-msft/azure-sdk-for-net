@@ -54,6 +54,7 @@ namespace Azure.Core.Http
             public static string XMsDate => "x-ms-date";
             public static string ContentType => "Content-Type";
             public static string XMsRequestId => "x-ms-request-id";
+            public static string XMsClientRequestId => "x-ms-client-request-id";
             public static string UserAgent => "User-Agent";
             public static string Accept => "Accept";
             public static string Authorization => "Authorization";
