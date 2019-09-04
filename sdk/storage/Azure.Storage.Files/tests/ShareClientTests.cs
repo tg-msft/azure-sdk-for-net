@@ -441,5 +441,19 @@ namespace Azure.Storage.Files.Test
                     async () => await dir.GetPropertiesAsync());
             }
         }
+
+        [Test]
+        public async Task GetPermissionAsync()
+        {
+            // Copied from the documentation.  I have no idea what this does or means.
+            const string permission = "O:S-1-5-21-2127521184-1604012920-1887927527-21560751G:S-1-5-21-2127521184-1604012920-1887927527-513D:AI(A;;FA;;;SY)(A;;FA;;;BA)(A;;0x1200a9;;;S-1-5-21-397955417-626881126-188441444-3053964)";
+
+            using (this.GetNewShare(out var share))
+            {
+                var info = await share.CreatePermissionAsync(permission);
+                var result = await share.GetPermissionAsync(info.Value.FilePermissionKey);
+                Assert.AreEqual(permission, result.Value); // Fails, but might be how the service works?
+            }
+        }
     }
 }
