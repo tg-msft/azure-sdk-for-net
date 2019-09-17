@@ -14,13 +14,18 @@ namespace Azure.Storage.Test.Shared
     public class RecordedClientRequestIdPolicy : SynchronousHttpPipelinePolicy
     {
         private readonly TestRecording _testRecording;
+        private readonly string _parallelRangePrefix = null;
 
         /// <summary>
         /// Create a new RecordedClientRequestIdPolicy
         /// </summary>
-        public RecordedClientRequestIdPolicy(TestRecording testRecording)
+        public RecordedClientRequestIdPolicy(TestRecording testRecording, bool parallelRange = false)
         {
             _testRecording = testRecording;
+            if (parallelRange)
+            {
+                _parallelRangePrefix = _testRecording.GenerateId() + "_";
+            }
         }
 
         /// <summary>
@@ -35,7 +40,17 @@ namespace Azure.Storage.Test.Shared
         /// <param name="message">The message that was sent</param>
         public override void OnSendingRequest(HttpPipelineMessage message)
         {
-            message.Request.ClientRequestId = _testRecording.Random.NewGuid().ToString();
+            if (_parallelRangePrefix != null &&
+                message.Request.Headers.TryGetValue("x-ms-range", out string range))
+            {
+                // If we're transferring a sequence of ranges in parallel, use
+                // the same prefix and use the range to differentiate each message
+                message.Request.ClientRequestId = _parallelRangePrefix + range;
+            }
+            else
+            {
+                message.Request.ClientRequestId = _testRecording.Random.NewGuid().ToString();
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Azure.Storage.Test.Shared
         public BlobTestBase(bool async) : this(async, null) { }
 
         public BlobTestBase(bool async, RecordedTestMode? mode = null)
-            : base(async, RecordedTestMode.Live)
+            : base(async, mode)
         {
         }
 
@@ -38,7 +38,7 @@ namespace Azure.Storage.Test.Shared
         public string GetNewBlobName() => $"test-blob-{this.Recording.Random.NewGuid()}";
         public string GetNewBlockName() => $"test-block-{this.Recording.Random.NewGuid()}";
 
-        public BlobClientOptions GetOptions()
+        public BlobClientOptions GetOptions(bool parallelRange = false)
         {
             var options = new BlobClientOptions
             {
@@ -53,7 +53,7 @@ namespace Azure.Storage.Test.Shared
             };
             if(Mode != RecordedTestMode.Live)
             {
-                options.AddPolicy(HttpPipelinePosition.PerCall, new RecordedClientRequestIdPolicy(Recording));
+                options.AddPolicy(HttpPipelinePosition.PerCall, new RecordedClientRequestIdPolicy(Recording, parallelRange));
             }
 
             return Recording.InstrumentClientOptions(options);
