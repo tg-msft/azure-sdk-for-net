@@ -1,0 +1,316 @@
+namespace Azure.Search.Documents
+{
+    public class SearchClientOptions { }
+    public class SearchRequestOptions { }
+    public class AutocompleteOptions { }
+    public class SearchOptions { }
+    public class SuggestOptions { }
+    public class GetDocumentOptions { }
+    public class IndexDocumentsOptions { }
+    public class SearchFilter { }
+
+    public class SearchIndexClient
+    {
+        Response<long> GetDocumentCount(SearchRequestOptions, CancellationToken) { }
+        Task<Response<long>> GetDocumentCountAsync(SearchRequestOptions, CancellationToken) { }
+
+        Response<SearchDocument> GetDocument(string, GetDocumentOptions, CancellationToken) { }
+        Task<Response<SearchDocument>> GetDocumentAsync(string, GetDocumentOptions, CancellationToken) { }
+        Response<T> GetDocument<T>(string, GetDocumentOptions, CancellationToken) { }
+        Task<Response<T>> GetDocumentAsync<T>(string, GetDocumentOptions, CancellationToken) { }
+
+        Response<SearchResults<SearchDocument>> Search(string, SearchOptions, CancellationToken) { }
+        Task<Response<SearchResults<SearchDocument>>> SearchAsync(string, SearchOptions, CancellationToken) { }
+        Response<SearchResults<T>> Search<T>(string, SearchOptions, CancellationToken) { }
+        Task<Response<SearchResults<T>>> SearchAsync<T>(string, SearchOptions, CancellationToken) { }
+
+        Response<SuggestResults<SearchDocument>> Suggest(string, string, SuggestOptions, CancellationToken) { }
+        Task<Response<SuggestResults<SearchDocument>>> SuggestAsync(string, string, SuggestOptions, CancellationToken) { }
+        Response<SuggestResults<T>> Suggest<T>(string, string, SuggestOptions, CancellationToken) { }
+        Task<Response<SuggestResults<T>>> SuggestAsync<T>(string, string, SuggestOptions, CancellationToken) { }
+
+        Response<AutocompleteResults> Autocomplete(string, string, AutocompleteOptions, CancellationToken) { }
+        Task<Response<AutocompleteResults>> AutocompleteAsync(string, string, AutocompleteOptions, CancellationToken) { }
+        
+        Response<IndexDocumentsResult> IndexDocuments(IndexDocumentsBatch<SearchDocument>, IndexDocumentsOptions, CancellationToken) { }
+        Task<Response<IndexDocumentsResult>> IndexDocumentsAsync(IndexDocumentsBatch<SearchDocument>, IndexDocumentsOptions, CancellationToken) { }
+        Response<IndexDocumentsResult> IndexDocuments<T>(IndexDocumentsBatch<T>, IndexDocumentsOptions, CancellationToken) { }
+        Task<Response<IndexDocumentsResult>> IndexDocumentsAsync<T>(IndexDocumentsBatch<T>, IndexDocumentsOptions, CancellationToken) { }
+    }
+
+    public class FieldBuilder { }
+    // TODO: FieldBuilder's attributes like [Key], [Searchable], etc.
+
+    public class SearchServiceClient
+    {
+        SearchIndexClient GetSearchIndexClient(string) { }
+
+
+
+
+
+
+        Response<SearchServiceStatistics> GetServiceStatistics(SearchRequestOptions, CancellationToken) { }
+        Task<Response<SearchServiceStatistics>> GetServiceStatisticsAsync(SearchRequestOptions, CancellationToken) { }
+
+
+
+
+
+
+
+        Response<DataSource> CreateDataSource(DataSource, SearchRequestOptions, CancellationToken) { }
+        Task<Response<DataSource>> CreateDataSourceAsync(DataSource, SearchRequestOptions, CancellationToken) { }
+        Response<DataSource> CreateOrUpdateDataSource(DataSource, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response<DataSource>> CreateOrUpdateDataSourceAsync(DataSource, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response DeleteDataSource(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response> DeleteDataSourceAsync(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response<DataSource> GetDataSource(string, SearchRequestOptions, CancellationToken) { }
+        Task<Response<DataSource>> GetDataSourceAsync(string, SearchRequestOptions, CancellationToken) { }
+        Response<IReadOnlyList<DataSource>> GetDataSources(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+        Task<Response<IReadOnlyList<DataSource>>> GetDataSourcesAsync(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+
+
+
+
+        Response<IReadOnlyList<TokenInfo>> AnalyzeText(string, AnalyzeRequest, SearchRequestOptions, CancellationToken) { }
+        Task<Response<IReadOnlyList<TokenInfo>>> AnalyzeTextAsync(string, AnalyzeRequest, SearchRequestOptions, CancellationToken) { }
+        Response<SearchIndex> CreateIndex(SearchIndex, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SearchIndex>> CreateIndexAsync(SearchIndex, SearchRequestOptions, CancellationToken) { }
+        Response<SearchIndex> CreateOrUpdateIndex(SearchIndex, bool, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SearchIndex>> CreateOrUpdateIndexAsync(SearchIndex, bool, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response DeleteIndex(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response> DeleteIndexAsync(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response<SearchIndex> GetIndex(string, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SearchIndex>> GetIndexAsync(string, SearchRequestOptions, CancellationToken) { }
+        Response<IReadOnlyList<SearchIndex>> GetIndexes(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+        Task<Response<IReadOnlyList<SearchIndex>>> GetIndexesAsync(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+        Response<SearchIndexStatistics> GetIndexStatistics(string, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SearchIndexStatistics>> GetIndexStatisticsAsync(string, SearchRequestOptions, CancellationToken) { }
+
+
+
+
+
+        Response<SearchIndexer> CreateIndexer(SearchIndexer, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SearchIndexer>> CreateIndexerAsync(SearchIndexer, SearchRequestOptions, CancellationToken) { }
+        Response<SearchIndexer> CreateOrUpdateIndexer(SearchIndexer, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SearchIndexer>> CreateOrUpdateIndexerAsync(SearchIndexer, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response DeleteIndexer(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response> DeleteIndexerAsync(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response<SearchIndexer> GetIndexer(string, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SearchIndexer>> GetIndexerAsync(string, SearchRequestOptions, CancellationToken) { }
+        Response<IReadOnlyList<SearchIndexer>> GetIndexers(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+        Task<Response<IReadOnlyList<SearchIndexer>>> GetIndexersAsync(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+        Response<IndexerExecutionInfo> GetIndexerStatus(string, SearchRequestOptions, CancellationToken) { }
+        Task<Response<IndexerExecutionInfo>> GetIndexerStatusAsync(string, SearchRequestOptions, CancellationToken) { }
+        Response ResetIndexer(string, SearchRequestOptions, CancellationToken) { }
+        Task<Response> ResetIndexerAsync(string, SearchRequestOptions, CancellationToken) { }
+        Response RunIndexer(string, SearchRequestOptions, CancellationToken) { }
+        Task<Response> RunIndexerAsync(string, SearchRequestOptions, CancellationToken) { }
+
+
+
+
+
+        Response<Skillset> CreateSkillset(Skillset, SearchRequestOptions, CancellationToken) { }
+        Task<Response<Skillset>> CreateSkillsetAsync(Skillset, SearchRequestOptions, CancellationToken) { }
+        Response<Skillset> CreateOrUpdateSkillset(Skillset, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response<Skillset>> CreateOrUpdateSkillsetAsync(Skillset, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response DeleteSkillset(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response> DeleteSkillsetAsync(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response<Skillset> GetSkillset(string, SearchRequestOptions, CancellationToken) { }
+        Task<Response<Skillset>> GetSkillsetAsync(string, SearchRequestOptions, CancellationToken) { }
+        Response<IReadOnlyList<Skillset>> GetSkillsets(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+        Task<Response<IReadOnlyList<Skillset>>> GetSkillsetsAsync(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+
+
+
+
+
+        Response<SynonymMap> CreateSynonymMap(SynonymMap, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SynonymMap>> CreateSynonymMapAsync(SynonymMap, SearchRequestOptions, CancellationToken) { }
+        Response<SynonymMap> CreateOrUpdateSynonymMap(SynonymMap, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SynonymMap>> CreateOrUpdateSynonymMapAsync(SynonymMap, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response DeleteSynonymMap(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Task<Response> DeleteSynonymMapAsync(string, MatchConditions, SearchRequestOptions, CancellationToken) { }
+        Response<SynonymMap> GetSynonymMap(string, SearchRequestOptions, CancellationToken) { }
+        Task<Response<SynonymMap>> GetSynonymMapAsync(string, SearchRequestOptions, CancellationToken) { }
+        Response<IReadOnlyList<SynonymMap>> GetSynonymMaps(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+        Task<Response<IReadOnlyList<SynonymMap>>> GetSynonymMapsAsync(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+    }
+}
+
+namespace Azure.Search.Documents.Models
+{
+    public enum AutocompleteMode { }
+    public class AutocompleteResults { }
+    public class Autocompletion { }
+    public class FacetResult { }
+    public enum IndexActionType { }
+    public class IndexDocumentsResult { }
+    public class SearchResourceCounter { }
+    public class SearchServiceCounters { }
+    public class SearchServiceLimits { }
+    public class SearchServiceStatistics { }
+    public enum SearchMode { }
+    public enum SearchQueryType { }
+    public class SearchResults<T> { }
+    public class SearchResultsPage<T> { }
+    public class SearchResult<T> { }
+    public class SearchSuggestion<T> { }
+    public class SuggestResults<T> { }
+    public class SearchDocument { }
+    public class IndexDocumentsAction<T> { }
+    public class IndexDocumentsAction { }
+    public class IndexDocumentsBatch<T> { }
+    public class IndexDocumentsBatch { }
+
+
+
+
+
+    public class ComplexField { }
+    public class FieldBase { }
+    public class SearchableField { }
+    public class SimpleField { }
+
+    public class Analyzer { }
+    public class AnalyzeRequest { }
+    public struct AnalyzerName { }
+    public class AsciiFoldingTokenFilter { }
+    public class AzureActiveDirectoryApplicationCredentials { }
+    public class CharFilter { }
+    public class CjkBigramTokenFilter { }
+    public enum CjkBigramTokenFilterScripts { }
+    public class ClassicTokenizer { }
+    public class CognitiveServicesAccount { }
+    public class CognitiveServicesAccountKey { }
+    public class CommonGramTokenFilter { }
+    public class ConditionalSkill { }
+    public class CorsOptions { }
+    public class CustomAnalyzer { }
+    public class DataChangeDetectionPolicy { }
+    public class DataContainer { }
+    public class DataDeletionDetectionPolicy { }
+    public class DataSource { }
+    public class DataSourceCredentials { }
+    public struct DataSourceType { }
+    public struct DataType { }
+    public class DefaultCognitiveServicesAccount { }
+    public class DictionaryDecompounderTokenFilter { }
+    public class DistanceScoringFunction { }
+    public class DistanceScoringParameters { }
+    public class EdgeNGramTokenFilter { }
+    public enum EdgeNGramTokenFilterSide { }
+    public class EdgeNGramTokenFilterV2 { }
+    public class EdgeNGramTokenizer { }
+    public class ElisionTokenFilter { }
+    public class EncryptionKey { }
+    public enum EntityCategory { }
+    public class EntityRecognitionSkill { }
+    public struct EntityRecognitionSkillLanguage { }
+    public class FieldMapping { }
+    public class FieldMappingFunction { }
+    public class FreshnessScoringFunction { }
+    public class FreshnessScoringParameters { }
+    public class HighWaterMarkChangeDetectionPolicy { }
+    public class ImageAnalysisSkill { }
+    public struct ImageAnalysisSkillLanguage { }
+    public enum ImageDetail { }
+    public class IndexerExecutionInfo { }
+    public class IndexerExecutionResult { }
+    public enum IndexerExecutionStatus { }
+    public class IndexerLimits { }
+    public enum IndexerStatus { }
+    public class IndexingParameters { }
+    public class IndexingResult { }
+    public class IndexingSchedule { }
+    public class InputFieldMappingEntry { }
+    public class ItemError { }
+    public class ItemWarning { }
+    public class KeepTokenFilter { }
+    public class KeyPhraseExtractionSkill { }
+    public struct KeyPhraseExtractionSkillLanguage { }
+    public class KeywordMarkerTokenFilter { }
+    public class KeywordTokenizer { }
+    public class KeywordTokenizerV2 { }
+    public class LanguageDetectionSkill { }
+    public class LengthTokenFilter { }
+    public class LimitTokenFilter { }
+    public class ListSynonymMapsResult { }
+    public class MagnitudeScoringFunction { }
+    public class MagnitudeScoringParameters { }
+    public class MappingCharFilter { }
+    public class MergeSkill { }
+    public class MicrosoftLanguageStemmingTokenizer { }
+    public class MicrosoftLanguageTokenizer { }
+    public enum MicrosoftStemmingTokenizerLanguage { }
+    public enum MicrosoftTokenizerLanguage { }
+    public class NGramTokenFilter { }
+    public class NGramTokenFilterV2 { }
+    public class NGramTokenizer { }
+    public class OcrSkill { }
+    public struct OcrSkillLanguage { }
+    public class OutputFieldMappingEntry { }
+    public class PathHierarchyTokenizerV2 { }
+    public class PatternAnalyzer { }
+    public class PatternCaptureTokenFilter { }
+    public class PatternReplaceCharFilter { }
+    public class PatternReplaceTokenFilter { }
+    public class PatternTokenizer { }
+    public enum PhoneticEncoder { }
+    public class PhoneticTokenFilter { }
+    public struct RegexFlags { }
+    public class ScoringFunction { }
+    public enum ScoringFunctionAggregation { }
+    public enum ScoringFunctionInterpolation { }
+    public class ScoringProfile { }
+    public class SearchField { }
+    public class SearchIndex { }
+    public class SearchIndexer { }
+    public class SearchIndexStatistics { }
+    public class SentimentSkill { }
+    public struct SentimentSkillLanguage { }
+    public class ShaperSkill { }
+    public class ShingleTokenFilter { }
+    public class Skill { }
+    public class Skillset { }
+    public class SnowballTokenFilter { }
+    public enum SnowballTokenFilterLanguage { }
+    public class SoftDeleteColumnDeletionDetectionPolicy { }
+    public class SplitSkill { }
+    public struct SplitSkillLanguage { }
+    public class SqlIntegratedChangeTrackingPolicy { }
+    public class StandardAnalyzer { }
+    public class StandardTokenizer { }
+    public class StandardTokenizerV2 { }
+    public class StemmerOverrideTokenFilter { }
+    public class StemmerTokenFilter { }
+    public enum StemmerTokenFilterLanguage { }
+    public class StopAnalyzer { }
+    public enum StopwordsList { }
+    public class StopwordsTokenFilter { }
+    public class Suggester { }
+    public class SynonymMap { }
+    public class SynonymTokenFilter { }
+    public class TagScoringFunction { }
+    public class TagScoringParameters { }
+    public enum TextExtractionAlgorithm { }
+    public enum TextSplitMode { }
+    public class TextTranslationSkill { }
+    public struct TextTranslationSkillLanguage { }
+    public class TextWeights { }
+    public enum TokenCharacterKind { }
+    public class TokenFilter { }
+    public struct TokenFilterName { }
+    public class TokenInfo { }
+    public class Tokenizer { }
+    public struct TokenizerName { }
+    public class TruncateTokenFilter { }
+    public class UaxUrlEmailTokenizer { }
+    public class UniqueTokenFilter { }
+    public enum VisualFeature { }
+    public class WebApiSkill { }
+    public class WordDelimiterTokenFilter { }
+}
