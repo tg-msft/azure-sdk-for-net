@@ -9,7 +9,7 @@ namespace Azure.Search.Documents
     public class IndexDocumentsOptions { }
     public class SearchFilter { }
 
-    public class SearchIndexClient
+    public class SearchClient
     {
         Response<long> GetDocumentCount(SearchRequestOptions, CancellationToken) { }
         Task<Response<long>> GetDocumentCountAsync(SearchRequestOptions, CancellationToken) { }
@@ -31,34 +31,34 @@ namespace Azure.Search.Documents
 
         Response<AutocompleteResults> Autocomplete(string, string, AutocompleteOptions, CancellationToken) { }
         Task<Response<AutocompleteResults>> AutocompleteAsync(string, string, AutocompleteOptions, CancellationToken) { }
-        
+
         Response<IndexDocumentsResult> IndexDocuments(IndexDocumentsBatch<SearchDocument>, IndexDocumentsOptions, CancellationToken) { }
         Task<Response<IndexDocumentsResult>> IndexDocumentsAsync(IndexDocumentsBatch<SearchDocument>, IndexDocumentsOptions, CancellationToken) { }
         Response<IndexDocumentsResult> IndexDocuments<T>(IndexDocumentsBatch<T>, IndexDocumentsOptions, CancellationToken) { }
         Task<Response<IndexDocumentsResult>> IndexDocumentsAsync<T>(IndexDocumentsBatch<T>, IndexDocumentsOptions, CancellationToken) { }
     }
 
-    public class FieldBuilder { }
-    // TODO: FieldBuilder's attributes like [Key], [Searchable], etc.
+    public class SearchIndexBuilder { }
+    // TODO: SearchIndexBuilder's attributes like [Key], [Searchable], etc.
 
     public class SearchServiceClient
     {
+        SearchClient GetSearchClient(string) { }
         SearchIndexClient GetSearchIndexClient(string) { }
-
-
-
-
-
+        SearchDataSourceClient GetSearchDataSourceClient() { }
+        SearchIndexerClient GetSearchIndexerClient(string) { }
+        SearchSkillsetClient GetSearchSkillsetClient(string) { }
+        SearchSynonymMapClient GetSearchSynonymMapClient(string) { }
 
         Response<SearchServiceStatistics> GetServiceStatistics(SearchRequestOptions, CancellationToken) { }
         Task<Response<SearchServiceStatistics>> GetServiceStatisticsAsync(SearchRequestOptions, CancellationToken) { }
+    }
+}
 
-
-
-
-
-
-
+namespace Azure.Search.Documents.Indexes
+{
+    public class SearchDataSourceClient
+    {
         Response<DataSource> CreateDataSource(DataSource, SearchRequestOptions, CancellationToken) { }
         Task<Response<DataSource>> CreateDataSourceAsync(DataSource, SearchRequestOptions, CancellationToken) { }
         Response<DataSource> CreateOrUpdateDataSource(DataSource, MatchConditions, SearchRequestOptions, CancellationToken) { }
@@ -69,10 +69,10 @@ namespace Azure.Search.Documents
         Task<Response<DataSource>> GetDataSourceAsync(string, SearchRequestOptions, CancellationToken) { }
         Response<IReadOnlyList<DataSource>> GetDataSources(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
         Task<Response<IReadOnlyList<DataSource>>> GetDataSourcesAsync(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+    }
 
-
-
-
+    public class SearchIndexClient
+    {
         Response<IReadOnlyList<TokenInfo>> AnalyzeText(string, AnalyzeRequest, SearchRequestOptions, CancellationToken) { }
         Task<Response<IReadOnlyList<TokenInfo>>> AnalyzeTextAsync(string, AnalyzeRequest, SearchRequestOptions, CancellationToken) { }
         Response<SearchIndex> CreateIndex(SearchIndex, SearchRequestOptions, CancellationToken) { }
@@ -87,11 +87,10 @@ namespace Azure.Search.Documents
         Task<Response<IReadOnlyList<SearchIndex>>> GetIndexesAsync(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
         Response<SearchIndexStatistics> GetIndexStatistics(string, SearchRequestOptions, CancellationToken) { }
         Task<Response<SearchIndexStatistics>> GetIndexStatisticsAsync(string, SearchRequestOptions, CancellationToken) { }
+    }
 
-
-
-
-
+    public class SearchIndexerClient
+    {
         Response<SearchIndexer> CreateIndexer(SearchIndexer, SearchRequestOptions, CancellationToken) { }
         Task<Response<SearchIndexer>> CreateIndexerAsync(SearchIndexer, SearchRequestOptions, CancellationToken) { }
         Response<SearchIndexer> CreateOrUpdateIndexer(SearchIndexer, MatchConditions, SearchRequestOptions, CancellationToken) { }
@@ -108,11 +107,10 @@ namespace Azure.Search.Documents
         Task<Response> ResetIndexerAsync(string, SearchRequestOptions, CancellationToken) { }
         Response RunIndexer(string, SearchRequestOptions, CancellationToken) { }
         Task<Response> RunIndexerAsync(string, SearchRequestOptions, CancellationToken) { }
+    }
 
-
-
-
-
+    public class SearchSkillsetClient
+    {
         Response<Skillset> CreateSkillset(Skillset, SearchRequestOptions, CancellationToken) { }
         Task<Response<Skillset>> CreateSkillsetAsync(Skillset, SearchRequestOptions, CancellationToken) { }
         Response<Skillset> CreateOrUpdateSkillset(Skillset, MatchConditions, SearchRequestOptions, CancellationToken) { }
@@ -123,11 +121,10 @@ namespace Azure.Search.Documents
         Task<Response<Skillset>> GetSkillsetAsync(string, SearchRequestOptions, CancellationToken) { }
         Response<IReadOnlyList<Skillset>> GetSkillsets(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
         Task<Response<IReadOnlyList<Skillset>>> GetSkillsetsAsync(IEnumerable<string>, SearchRequestOptions, CancellationToken) { }
+    }
 
-
-
-
-
+    public class SearchSynonymMapClient
+    {
         Response<SynonymMap> CreateSynonymMap(SynonymMap, SearchRequestOptions, CancellationToken) { }
         Task<Response<SynonymMap>> CreateSynonymMapAsync(SynonymMap, SearchRequestOptions, CancellationToken) { }
         Response<SynonymMap> CreateOrUpdateSynonymMap(SynonymMap, MatchConditions, SearchRequestOptions, CancellationToken) { }
@@ -165,11 +162,10 @@ namespace Azure.Search.Documents.Models
     public class IndexDocumentsAction { }
     public class IndexDocumentsBatch<T> { }
     public class IndexDocumentsBatch { }
+}
 
-
-
-
-
+namespace Azure.Search.Documents.Indexes.Models
+{
     public class ComplexField { }
     public class FieldBase { }
     public class SearchableField { }
