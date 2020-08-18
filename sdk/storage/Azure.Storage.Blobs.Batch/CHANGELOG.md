@@ -1,7 +1,7 @@
 # Release History
 
-## 12.4.0-preview.1 (Unreleased)
-
+## 12.3.1 (2020-08-18)
+- Fixes #14297 to support synchronization contexts.
 
 ## 12.3.0 (2020-08-13)
 - Includes all features from 12.3.0-preview.1 through 12.3.0-preview.2.
